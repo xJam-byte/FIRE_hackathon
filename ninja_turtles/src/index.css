@@ -718,24 +718,37 @@ a:hover {
     font-size: clamp(1rem, 5vw, 1.4rem) !important;
   }
 
-  /* Stat cards grids */
+  /* ——— GRID FIX: override inline minmax that overflows ——— */
   .grid-stats {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    margin-bottom: 20px !important;
   }
 
   .grid-stats > div {
-    padding: 16px !important;
+    padding: 14px !important;
+    min-width: 0 !important;
   }
 
   .grid-stats .stat-value {
-    font-size: 24px !important;
+    font-size: 22px !important;
+  }
+
+  .stat-card {
+    padding: 14px !important;
+  }
+
+  .stat-card .stat-value {
+    font-size: 22px !important;
   }
 
   /* Chart/content grids — single column */
   .grid-charts {
+    display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 16px !important;
+    margin-bottom: 20px !important;
   }
 
   /* Three-column grids — stack */
@@ -744,13 +757,14 @@ a:hover {
     gap: 16px !important;
   }
 
-  /* Glass cards — reduced padding */
+  /* Glass cards — reduced padding + no overflow */
   .glass-card {
     padding: 16px !important;
     border-radius: var(--radius-md) !important;
+    overflow: hidden;
   }
 
-  /* Tables — horizontal scroll */
+  /* ——— TABLES: proper horizontal scroll ——— */
   .table-scroll-wrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -759,18 +773,31 @@ a:hover {
     position: relative;
   }
 
+  /* Gradient hint for horizontal scroll */
+  .table-scroll-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(to right, transparent, var(--bg-surface));
+    pointer-events: none;
+    z-index: 2;
+  }
+
   .data-table {
-    min-width: 600px;
+    min-width: 580px;
   }
 
   .data-table thead th {
-    padding: 10px 12px;
+    padding: 10px 10px;
     font-size: 10px;
     white-space: nowrap;
   }
 
   .data-table tbody td {
-    padding: 10px 12px;
+    padding: 10px 10px;
     font-size: 12px;
     white-space: nowrap;
   }
@@ -802,13 +829,18 @@ a:hover {
     z-index: 199;
   }
 
-  /* Filters row */
+  /* Filters row — make dropdowns fill width */
   .filters-row {
     gap: 8px !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
   }
 
-  .filters-row select {
-    min-width: 140px !important;
+  .filters-row select,
+  .filters-row .input {
+    min-width: 0 !important;
+    width: calc(50% - 4px) !important;
+    flex: 1 1 calc(50% - 4px) !important;
     font-size: 12px !important;
   }
 
@@ -851,6 +883,13 @@ a:hover {
     display: none !important;
   }
 
+  /* Donut chart — stack on mobile */
+  .donut-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+
   /* Chat page */
   .chat-container {
     height: calc(100vh - var(--header-height) - 32px) !important;
@@ -890,24 +929,27 @@ a:hover {
   .pagination-row {
     gap: 4px !important;
     flex-wrap: wrap;
+    justify-content: center !important;
   }
 
   .pagination-row button {
     padding: 6px 10px !important;
     font-size: 11px !important;
+    min-height: 36px !important;
   }
 
-  /* Analytics tabs */
+  /* Analytics tabs — wraparound grid */
   .analytics-tabs {
-    flex-wrap: wrap;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 6px !important;
   }
 
   .analytics-tabs button {
-    flex: 1;
     min-width: auto !important;
-    padding: 8px 14px !important;
-    font-size: 11px !important;
+    padding: 8px 10px !important;
+    font-size: 10px !important;
+    text-align: center !important;
   }
 
   /* KPI cards */
@@ -926,6 +968,12 @@ a:hover {
   .btn {
     min-height: 40px;
     padding: 10px 18px;
+  }
+
+  /* ——— Prevent ANY overflow on body ——— */
+  .app-main, .app-content {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
   }
 }
 

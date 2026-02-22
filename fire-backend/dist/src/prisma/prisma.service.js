@@ -19,17 +19,18 @@ let PrismaService = PrismaService_1 = class PrismaService extends client_1.Prism
     pool;
     logger = new common_1.Logger(PrismaService_1.name);
     constructor() {
+        const dbUrl = new URL(process.env.DATABASE_URL || 'postgresql://postgres:postgres@127.0.0.1:5433/fire_db');
         const pool = new pg_1.Pool({
-            host: '127.0.0.1',
-            port: 5433,
-            database: 'fire_db',
-            user: 'postgres',
-            password: 'postgres',
+            host: dbUrl.hostname,
+            port: parseInt(dbUrl.port, 10) || 5432,
+            database: dbUrl.pathname.replace('/', ''),
+            user: dbUrl.username || undefined,
+            password: dbUrl.password || undefined,
         });
         const adapter = new adapter_pg_1.PrismaPg(pool);
         super({ adapter });
         this.pool = pool;
-        this.logger.log('Database pool configured for 127.0.0.1:5433/fire_db');
+        this.logger.log(`Database pool configured for ${dbUrl.hostname}:${dbUrl.port}/${dbUrl.pathname.replace('/', '')}`);
     }
     async onModuleInit() {
         await this.$connect();

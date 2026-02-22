@@ -39,6 +39,15 @@ export declare class ManagersService {
         };
     }>;
     findOne(id: number): Promise<({
+        businessUnit: {
+            name: string;
+            address: string;
+            latitude: number | null;
+            longitude: number | null;
+            createdAt: Date;
+            updatedAt: Date;
+            id: number;
+        };
         assignments: ({
             ticket: {
                 aiAnalysis: {
@@ -81,15 +90,6 @@ export declare class ManagersService {
             reason: string | null;
             assignedAt: Date;
         })[];
-        businessUnit: {
-            name: string;
-            address: string;
-            latitude: number | null;
-            longitude: number | null;
-            createdAt: Date;
-            updatedAt: Date;
-            id: number;
-        };
     } & {
         createdAt: Date;
         updatedAt: Date;
