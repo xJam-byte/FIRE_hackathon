@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model BusinessUnit {
+  id          Int          @id @default(autoincrement())
+  name        String
+  address     String
+  latitude    Float?
+  longitude   Float?
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+  managers    Manager[]
+  assignments Assignment[]
+
+  @@map("business_units")
+}
+
+model Manager {
+  id             Int          @id @default(autoincrement())
+  fullName       String       @map("full_name")
+  position       String
+  skills         String[]
+  businessUnitId Int          @map("business_unit_id")
+  currentLoad    Int          @default(0) @map("current_load")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+  businessUnit   BusinessUnit @relation(fields: [businessUnitId], references: [id])
+  assignments    Assignment[]
+
+  @@map("managers")
+}
+
+model Ticket {
+  id          Int         @id @default(autoincrement())
+  clientGuid  String      @map("client_guid")
+  gender      String?
+  birthDate   DateTime?   @map("birth_date")
+  segment     String
+  description String
+  attachments String?
+  country     String?
+  region      String?
+  city        String?
+  street      String?
+  house       String?
+  status      String      @default("new")
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  aiAnalysis  AiAnalysis?
+  assignment  Assignment?
+
+  @@map("tickets")
+}
+
+model AiAnalysis {
+  id        Int      @id @default(autoincrement())
+  ticketId  Int      @unique @map("ticket_id")
+  type      String
+  tonality  String
+  priority  Int
+  language  String   @default("RU")
+  summary   String
+  latitude  Float?
+  longitude Float?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  ticket    Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+
+  @@map("ai_analyses")
+}
+
+model Assignment {
+  id             Int          @id @default(autoincrement())
+  ticketId       Int          @unique @map("ticket_id")
+  managerId      Int          @map("manager_id")
+  businessUnitId Int          @map("business_unit_id")
+  reason         String?
+  assignedAt     DateTime     @default(now()) @map("assigned_at")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+  ticket         Ticket       @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  manager        Manager      @relation(fields: [managerId], references: [id])
+  businessUnit   BusinessUnit @relation(fields: [businessUnitId], references: [id])
+
+  @@map("assignments")
+}

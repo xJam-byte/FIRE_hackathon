@@ -1,0 +1,685 @@
+/* =============================================
+   FIRE — Emerald Aurora Design System
+   Futuristic SaaS: dark emerald, neon lime, aurora beams
+   ============================================= */
+
+/* Google Fonts — Modern SaaS typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* CSS Custom Properties — Emerald Aurora Palette */
+:root {
+  /* Deep emerald backgrounds */
+  --bg-deep: #040d08;
+  --bg-surface: #091a10;
+  --bg-elevated: #0f251a;
+  --bg-hover: #153022;
+  --bg-sidebar: #061209;
+
+  /* Neon lime accents (primary) */
+  --lime: #a3f75c;
+  --lime-dim: #7cc93f;
+  --lime-glow: rgba(163, 247, 92, 0.25);
+  --lime-subtle: rgba(163, 247, 92, 0.06);
+
+  /* Aurora spectrum */
+  --aurora-cyan: #38f8d2;
+  --aurora-cyan-glow: rgba(56, 248, 210, 0.25);
+  --aurora-teal: #2dd4bf;
+  --aurora-teal-glow: rgba(45, 212, 191, 0.2);
+  --aurora-purple: #a78bfa;
+  --aurora-purple-glow: rgba(167, 139, 250, 0.25);
+  --aurora-pink: #f472b6;
+  --aurora-pink-glow: rgba(244, 114, 182, 0.25);
+
+  /* Functional colors */
+  --fn-blue: #60a5fa;
+  --fn-blue-glow: rgba(96, 165, 250, 0.25);
+  --fn-red: #f87171;
+  --fn-red-glow: rgba(248, 113, 113, 0.25);
+  --fn-orange: #fb923c;
+  --fn-orange-glow: rgba(251, 146, 60, 0.25);
+  --fn-amber: #fbbf24;
+
+  /* Text */
+  --text-primary: #e2f5ea;
+  --text-secondary: #6b9a7e;
+  --text-muted: #3d6651;
+  --text-accent: var(--lime);
+
+  /* Borders */
+  --border-subtle: rgba(163, 247, 92, 0.06);
+  --border-default: rgba(163, 247, 92, 0.12);
+  --border-strong: rgba(163, 247, 92, 0.25);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shadows */
+  --shadow-glow: 0 0 20px var(--lime-glow);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.5);
+  --shadow-aurora: 0 0 60px rgba(56, 248, 210, 0.08), 0 0 120px rgba(167, 139, 250, 0.05);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Layout */
+  --sidebar-width: 260px;
+  --header-height: 64px;
+}
+
+/* Base Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Скрываем скроллбар полностью */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Типографика */
+h1,
+h2,
+.display-font {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: var(--lime);
+  text-shadow: 0 0 30px var(--lime-glow);
+  letter-spacing: -0.5px;
+}
+
+h3,
+h4,
+.heading-font {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+/* Моноширинный для данных */
+code,
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Фокус */
+*:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Ссылки */
+a {
+  color: var(--lime);
+  text-decoration: none;
+  transition: color var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+a:hover {
+  color: #c4ff8a;
+  text-shadow: 0 0 12px var(--lime-glow);
+}
+
+/* =============================================
+   Анимации
+   ============================================= */
+
+/* Aurora pulse */
+@keyframes neonPulse {
+
+  0%,
+  100% {
+    text-shadow: 0 0 10px var(--lime-glow), 0 0 20px var(--lime-glow);
+    filter: brightness(1);
+  }
+
+  50% {
+    text-shadow: 0 0 20px var(--lime-glow), 0 0 40px var(--lime-glow), 0 0 60px var(--aurora-cyan-glow);
+    filter: brightness(1.15);
+  }
+}
+
+/* Появление снизу */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Появление слева */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Пульсация */
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Aurora beam - медленное перетекание градиента */
+@keyframes auroraShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Border glow */
+@keyframes borderGlow {
+
+  0%,
+  100% {
+    border-color: var(--border-default);
+  }
+
+  50% {
+    border-color: var(--border-strong);
+  }
+}
+
+/* Typewriter для AI */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Мерцание пиццы */
+@keyframes pizzaSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Noise texture */
+@keyframes noiseMove {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 200px 200px;
+  }
+}
+
+/* =============================================
+   Утилити-классы
+   ============================================= */
+
+.neon-text {
+  animation: neonPulse 3s ease-in-out infinite;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out both;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+/* Glassmorphism — emerald tint */
+.glass {
+  background: rgba(9, 26, 16, 0.75);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid var(--border-default);
+}
+
+.glass-card {
+  background: rgba(9, 26, 16, 0.6);
+  backdrop-filter: blur(20px) saturate(1.3);
+  -webkit-backdrop-filter: blur(20px) saturate(1.3);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-normal);
+}
+
+.glass-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-glow), var(--shadow-aurora);
+  transform: translateY(-2px);
+}
+
+/* Карточка статистики */
+.stat-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--border-strong);
+}
+
+/* Цветовые вариации для stat-card (черепашки → aurora) */
+.stat-card.leo::before {
+  background: var(--fn-blue);
+  box-shadow: 0 0 20px var(--fn-blue-glow);
+}
+
+.stat-card.raph::before {
+  background: var(--fn-red);
+  box-shadow: 0 0 20px var(--fn-red-glow);
+}
+
+.stat-card.donnie::before {
+  background: var(--aurora-purple);
+  box-shadow: 0 0 20px var(--aurora-purple-glow);
+}
+
+.stat-card.mikey::before {
+  background: var(--fn-orange);
+  box-shadow: 0 0 20px var(--fn-orange-glow);
+}
+
+/* Кнопки */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px 20px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--lime);
+  box-shadow: 0 0 20px var(--lime-glow);
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--lime-dim), #4a9c18);
+  border-color: var(--lime);
+  color: #000;
+  font-weight: 700;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--lime), var(--lime-dim));
+  box-shadow: 0 0 30px var(--lime-glow);
+}
+
+/* Таблица */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+}
+
+.data-table thead th {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.data-table tbody tr {
+  transition: background var(--transition-fast);
+  cursor: pointer;
+}
+
+.data-table tbody tr:hover {
+  background: var(--lime-subtle);
+}
+
+.data-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+/* Бейджи */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.badge.positive {
+  background: rgba(163, 247, 92, 0.12);
+  color: var(--lime);
+}
+
+.badge.negative {
+  background: rgba(248, 113, 113, 0.12);
+  color: var(--fn-red);
+}
+
+.badge.neutral {
+  background: rgba(107, 154, 126, 0.12);
+  color: var(--text-secondary);
+}
+
+.badge.warning {
+  background: rgba(251, 146, 60, 0.12);
+  color: var(--fn-orange);
+}
+
+.badge.info {
+  background: rgba(96, 165, 250, 0.12);
+  color: var(--fn-blue);
+}
+
+.badge.vip {
+  background: rgba(167, 139, 250, 0.12);
+  color: var(--aurora-purple);
+}
+
+/* Инпуты */
+.input {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--lime);
+  box-shadow: 0 0 20px var(--lime-glow);
+  background: var(--bg-elevated);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+/* =============================================
+   Layout
+   ============================================= */
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Aurora background effect */
+.app-layout::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(56, 248, 210, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 10%, rgba(167, 139, 250, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(163, 247, 92, 0.02) 0%, transparent 50%);
+  background-size: 200% 200%;
+  animation: auroraShift 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app-sidebar {
+  width: var(--sidebar-width);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-subtle);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.app-header {
+  height: var(--header-height);
+  background: rgba(9, 26, 16, 0.85);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-xl);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.app-content {
+  flex: 1;
+  padding: var(--space-xl);
+  max-width: 1440px;
+}
+
+/* =============================================
+   Адаптив
+   ============================================= */
+
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 0px;
+  }
+
+  .app-sidebar {
+    transform: translateX(-100%);
+    transition: transform var(--transition-slow);
+    width: 260px;
+  }
+
+  .app-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .app-main {
+    margin-left: 0;
+  }
+
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-slow);
+  }
+
+  .mobile-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-content {
+    padding: var(--space-md);
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+}
+
+/* =============================================
+   Scroll Reveal — IntersectionObserver
+   ============================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =============================================
+   Noise Overlay (subtle grain)
+   ============================================= */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  animation: noiseMove 8s linear infinite;
+}
