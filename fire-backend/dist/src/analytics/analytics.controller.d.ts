@@ -62,39 +62,39 @@ export declare class AnalyticsController {
         };
         highPriorityTickets: ({
             aiAnalysis: {
-                id: number;
-                ticketId: number;
-                type: string;
-                tonality: string;
-                priority: number;
-                language: string;
-                summary: string;
                 latitude: number | null;
                 longitude: number | null;
                 createdAt: Date;
                 updatedAt: Date;
+                id: number;
+                summary: string;
+                type: string;
+                ticketId: number;
+                tonality: string;
+                priority: number;
+                language: string;
             } | null;
             assignment: ({
-                manager: {
-                    fullName: string;
-                };
                 businessUnit: {
                     name: string;
                 };
+                manager: {
+                    fullName: string;
+                };
             } & {
-                id: number;
-                ticketId: number;
                 createdAt: Date;
                 updatedAt: Date;
+                id: number;
                 businessUnitId: number;
+                ticketId: number;
                 managerId: number;
                 reason: string | null;
                 assignedAt: Date;
             }) | null;
         } & {
-            id: number;
             createdAt: Date;
             updatedAt: Date;
+            id: number;
             clientGuid: string;
             gender: string | null;
             birthDate: Date | null;
@@ -170,39 +170,39 @@ export declare class AnalyticsController {
         };
         highPriorityTickets: ({
             aiAnalysis: {
-                id: number;
-                ticketId: number;
-                type: string;
-                tonality: string;
-                priority: number;
-                language: string;
-                summary: string;
                 latitude: number | null;
                 longitude: number | null;
                 createdAt: Date;
                 updatedAt: Date;
+                id: number;
+                summary: string;
+                type: string;
+                ticketId: number;
+                tonality: string;
+                priority: number;
+                language: string;
             } | null;
             assignment: ({
-                manager: {
-                    fullName: string;
-                };
                 businessUnit: {
                     name: string;
                 };
+                manager: {
+                    fullName: string;
+                };
             } & {
-                id: number;
-                ticketId: number;
                 createdAt: Date;
                 updatedAt: Date;
+                id: number;
                 businessUnitId: number;
+                ticketId: number;
                 managerId: number;
                 reason: string | null;
                 assignedAt: Date;
             }) | null;
         } & {
-            id: number;
             createdAt: Date;
             updatedAt: Date;
+            id: number;
             clientGuid: string;
             gender: string | null;
             birthDate: Date | null;

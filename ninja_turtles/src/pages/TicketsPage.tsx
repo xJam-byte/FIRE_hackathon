@@ -95,6 +95,7 @@ export default function TicketsPage() {
   return (
     <div>
       <div
+        className="filters-row"
         style={{
           display: "flex",
           gap: "12px",
@@ -129,6 +130,7 @@ export default function TicketsPage() {
 
         {meta && (
           <div
+            className="filter-meta"
             style={{
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: "12px",
@@ -143,7 +145,7 @@ export default function TicketsPage() {
         )}
       </div>
 
-      <div style={{ display: "flex", gap: "24px" }}>
+      <div className="tickets-layout" style={{ display: "flex", gap: "24px" }}>
         <div
           className="glass-card"
           style={{ flex: 1, padding: "0", overflow: "hidden" }}
@@ -178,7 +180,7 @@ export default function TicketsPage() {
               </div>
             </div>
           ) : (
-            <div style={{ overflowX: "auto" }}>
+            <div className="table-scroll-wrapper">
               <table className="data-table">
                 <thead>
                   <tr>
@@ -322,6 +324,7 @@ export default function TicketsPage() {
 
           {meta && meta.totalPages > 1 && (
             <div
+              className="pagination-row"
               style={{
                 display: "flex",
                 justifyContent: "center",
@@ -380,249 +383,257 @@ export default function TicketsPage() {
         </div>
 
         {selectedTicketId !== null && (
-          <div
-            className="glass-card"
-            style={{
-              width: "380px",
-              padding: "24px",
-              flexShrink: 0,
-              animation: "slideUp 0.3s ease",
-              alignSelf: "flex-start",
-              position: "sticky",
-              top: "calc(var(--header-height) + 32px)",
-            }}
-          >
-            {detailLoading ? (
-              <div style={{ textAlign: "center", padding: "40px" }}>
-                <div
-                  style={{
-                    fontSize: "24px",
-                    animation: "pulse 1.5s ease infinite",
-                  }}
-                >
-                  🔥
-                </div>
-              </div>
-            ) : selectedDetail ? (
-              <>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginBottom: "16px",
-                  }}
-                >
-                  <h3
-                    style={{
-                      fontFamily: "'Space Grotesk', sans-serif",
-                      fontSize: "14px",
-                    }}
-                  >
-                    #{selectedDetail.id}
-                  </h3>
-                  <button
-                    onClick={() => setSelectedTicketId(null)}
-                    className="btn"
-                    style={{ padding: "4px 8px", fontSize: "12px" }}
-                  >
-                    ✕
-                  </button>
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    gap: "6px",
-                    marginBottom: "16px",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <span
-                    className={`badge ${selectedDetail.segment === "VIP" ? "vip" : selectedDetail.segment === "Priority" ? "warning" : "neutral"}`}
-                  >
-                    {selectedDetail.segment}
-                  </span>
-                  {selectedDetail.aiAnalysis && (
-                    <span
-                      className={`badge ${selectedDetail.aiAnalysis.tonality === "Позитивный" ? "positive" : selectedDetail.aiAnalysis.tonality === "Негативный" ? "negative" : "neutral"}`}
-                    >
-                      {selectedDetail.aiAnalysis.tonality}
-                    </span>
-                  )}
-                  <span
-                    className={`badge ${(statusMap[selectedDetail.status] || { cls: "neutral" }).cls}`}
-                  >
-                    {
-                      (
-                        statusMap[selectedDetail.status] || {
-                          label: selectedDetail.status,
-                        }
-                      ).label
-                    }
-                  </span>
-                </div>
-
-                <div
-                  style={{
-                    background: "var(--bg-elevated)",
-                    borderRadius: "var(--radius-md)",
-                    padding: "14px",
-                    marginBottom: "14px",
-                    borderLeft: "3px solid var(--lime)",
-                    fontSize: "12px",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {selectedDetail.description}
-                </div>
-
-                {selectedDetail.aiAnalysis && (
+          <>
+            <div
+              className="ticket-detail-overlay"
+              onClick={() => setSelectedTicketId(null)}
+            />
+            <div
+              className="glass-card ticket-detail-panel"
+              style={{
+                width: "380px",
+                padding: "24px",
+                flexShrink: 0,
+                animation: "slideUp 0.3s ease",
+                alignSelf: "flex-start",
+                position: "sticky",
+                top: "calc(var(--header-height) + 32px)",
+              }}
+            >
+              {detailLoading ? (
+                <div style={{ textAlign: "center", padding: "40px" }}>
                   <div
                     style={{
+                      fontSize: "24px",
+                      animation: "pulse 1.5s ease infinite",
+                    }}
+                  >
+                    🔥
+                  </div>
+                </div>
+              ) : selectedDetail ? (
+                <>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginBottom: "16px",
+                    }}
+                  >
+                    <h3
+                      style={{
+                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontSize: "14px",
+                      }}
+                    >
+                      #{selectedDetail.id}
+                    </h3>
+                    <button
+                      onClick={() => setSelectedTicketId(null)}
+                      className="btn"
+                      style={{ padding: "4px 8px", fontSize: "12px" }}
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "6px",
+                      marginBottom: "16px",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <span
+                      className={`badge ${selectedDetail.segment === "VIP" ? "vip" : selectedDetail.segment === "Priority" ? "warning" : "neutral"}`}
+                    >
+                      {selectedDetail.segment}
+                    </span>
+                    {selectedDetail.aiAnalysis && (
+                      <span
+                        className={`badge ${selectedDetail.aiAnalysis.tonality === "Позитивный" ? "positive" : selectedDetail.aiAnalysis.tonality === "Негативный" ? "negative" : "neutral"}`}
+                      >
+                        {selectedDetail.aiAnalysis.tonality}
+                      </span>
+                    )}
+                    <span
+                      className={`badge ${(statusMap[selectedDetail.status] || { cls: "neutral" }).cls}`}
+                    >
+                      {
+                        (
+                          statusMap[selectedDetail.status] || {
+                            label: selectedDetail.status,
+                          }
+                        ).label
+                      }
+                    </span>
+                  </div>
+
+                  <div
+                    style={{
+                      background: "var(--bg-elevated)",
+                      borderRadius: "var(--radius-md)",
+                      padding: "14px",
+                      marginBottom: "14px",
+                      borderLeft: "3px solid var(--lime)",
+                      fontSize: "12px",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {selectedDetail.description}
+                  </div>
+
+                  {selectedDetail.aiAnalysis && (
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: "var(--text-secondary)",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "8px",
+                      }}
+                    >
+                      <div>
+                        <strong style={{ color: "var(--aurora-purple)" }}>
+                          Тип:
+                        </strong>{" "}
+                        {selectedDetail.aiAnalysis.type}
+                      </div>
+                      <div>
+                        <strong style={{ color: "var(--fn-blue)" }}>
+                          Язык:
+                        </strong>{" "}
+                        {selectedDetail.aiAnalysis.language}
+                      </div>
+                      <div>
+                        <strong style={{ color: "var(--fn-orange)" }}>
+                          Приоритет:
+                        </strong>{" "}
+                        {selectedDetail.aiAnalysis.priority}/10
+                      </div>
+                      <div
+                        style={{
+                          marginTop: "8px",
+                          padding: "10px",
+                          background: "var(--bg-surface)",
+                          borderRadius: "var(--radius-sm)",
+                          border: "1px solid var(--border-subtle)",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontSize: "10px",
+                            color: "var(--lime)",
+                            marginBottom: "4px",
+                            fontFamily: "'Space Grotesk', sans-serif",
+                            letterSpacing: "1px",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "4px",
+                          }}
+                        >
+                          <StarIcon
+                            size={12}
+                            color="#39ff14"
+                            glow="rgba(57,255,20,0.3)"
+                          />{" "}
+                          SUMMARY
+                        </div>
+                        {selectedDetail.aiAnalysis.summary}
+                      </div>
+                    </div>
+                  )}
+
+                  <div
+                    style={{
+                      marginTop: "12px",
                       fontSize: "12px",
                       color: "var(--text-secondary)",
                       display: "flex",
                       flexDirection: "column",
-                      gap: "8px",
-                    }}
-                  >
-                    <div>
-                      <strong style={{ color: "var(--aurora-purple)" }}>
-                        Тип:
-                      </strong>{" "}
-                      {selectedDetail.aiAnalysis.type}
-                    </div>
-                    <div>
-                      <strong style={{ color: "var(--fn-blue)" }}>Язык:</strong>{" "}
-                      {selectedDetail.aiAnalysis.language}
-                    </div>
-                    <div>
-                      <strong style={{ color: "var(--fn-orange)" }}>
-                        Приоритет:
-                      </strong>{" "}
-                      {selectedDetail.aiAnalysis.priority}/10
-                    </div>
-                    <div
-                      style={{
-                        marginTop: "8px",
-                        padding: "10px",
-                        background: "var(--bg-surface)",
-                        borderRadius: "var(--radius-sm)",
-                        border: "1px solid var(--border-subtle)",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "10px",
-                          color: "var(--lime)",
-                          marginBottom: "4px",
-                          fontFamily: "'Space Grotesk', sans-serif",
-                          letterSpacing: "1px",
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "4px",
-                        }}
-                      >
-                        <StarIcon
-                          size={12}
-                          color="#39ff14"
-                          glow="rgba(57,255,20,0.3)"
-                        />{" "}
-                        SUMMARY
-                      </div>
-                      {selectedDetail.aiAnalysis.summary}
-                    </div>
-                  </div>
-                )}
-
-                <div
-                  style={{
-                    marginTop: "12px",
-                    fontSize: "12px",
-                    color: "var(--text-secondary)",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "6px",
-                  }}
-                >
-                  {selectedDetail.assignment && (
-                    <>
-                      <span
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "6px",
-                        }}
-                      >
-                        <NinjaIcon size={14} />{" "}
-                        {selectedDetail.assignment.manager?.fullName} •{" "}
-                        {selectedDetail.assignment.businessUnit?.name}
-                      </span>
-                      {selectedDetail.assignment.reason && (
-                        <div
-                          style={{
-                            padding: "8px 10px",
-                            background: "var(--bg-surface)",
-                            borderRadius: "var(--radius-sm)",
-                            border: "1px solid var(--border-subtle)",
-                            fontSize: "11px",
-                          }}
-                        >
-                          <div
-                            style={{
-                              fontSize: "10px",
-                              color: "var(--fn-orange)",
-                              marginBottom: "2px",
-                              fontFamily: "'Space Grotesk', sans-serif",
-                              letterSpacing: "1px",
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "4px",
-                            }}
-                          >
-                            <DnaIcon
-                              size={12}
-                              color="var(--fn-orange)"
-                              glow="rgba(255,106,0,0.3)"
-                            />{" "}
-                            ПРИЧИНА
-                          </div>
-                          {selectedDetail.assignment.reason}
-                        </div>
-                      )}
-                    </>
-                  )}
-                  <span
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
                       gap: "6px",
                     }}
                   >
-                    <OfficeIcon size={14} />{" "}
-                    {[
-                      selectedDetail.city,
-                      selectedDetail.street,
-                      selectedDetail.house,
-                    ]
-                      .filter(Boolean)
-                      .join(", ") || "—"}
-                  </span>
+                    {selectedDetail.assignment && (
+                      <>
+                        <span
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "6px",
+                          }}
+                        >
+                          <NinjaIcon size={14} />{" "}
+                          {selectedDetail.assignment.manager?.fullName} •{" "}
+                          {selectedDetail.assignment.businessUnit?.name}
+                        </span>
+                        {selectedDetail.assignment.reason && (
+                          <div
+                            style={{
+                              padding: "8px 10px",
+                              background: "var(--bg-surface)",
+                              borderRadius: "var(--radius-sm)",
+                              border: "1px solid var(--border-subtle)",
+                              fontSize: "11px",
+                            }}
+                          >
+                            <div
+                              style={{
+                                fontSize: "10px",
+                                color: "var(--fn-orange)",
+                                marginBottom: "2px",
+                                fontFamily: "'Space Grotesk', sans-serif",
+                                letterSpacing: "1px",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "4px",
+                              }}
+                            >
+                              <DnaIcon
+                                size={12}
+                                color="var(--fn-orange)"
+                                glow="rgba(255,106,0,0.3)"
+                              />{" "}
+                              ПРИЧИНА
+                            </div>
+                            {selectedDetail.assignment.reason}
+                          </div>
+                        )}
+                      </>
+                    )}
+                    <span
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                      }}
+                    >
+                      <OfficeIcon size={14} />{" "}
+                      {[
+                        selectedDetail.city,
+                        selectedDetail.street,
+                        selectedDetail.house,
+                      ]
+                        .filter(Boolean)
+                        .join(", ") || "—"}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <div
+                  style={{
+                    textAlign: "center",
+                    padding: "40px",
+                    color: "var(--text-muted)",
+                  }}
+                >
+                  Не удалось загрузить
                 </div>
-              </>
-            ) : (
-              <div
-                style={{
-                  textAlign: "center",
-                  padding: "40px",
-                  color: "var(--text-muted)",
-                }}
-              >
-                Не удалось загрузить
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          </>
         )}
       </div>
     </div>

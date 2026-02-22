@@ -65,11 +65,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <aside className={`app-sidebar ${isOpen ? "open" : ""}`}>
-      {/* Логотип */}
+      {/* Логотип + Close button */}
       <div
         style={{
           padding: "24px 20px",
           borderBottom: "1px solid var(--border-subtle)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
         <div
@@ -106,6 +109,26 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             </span>
           </div>
         </div>
+
+        <button
+          className="sidebar-close-btn"
+          onClick={onClose}
+          style={{
+            background: "none",
+            border: "1px solid var(--border-default)",
+            color: "var(--text-secondary)",
+            width: "32px",
+            height: "32px",
+            borderRadius: "var(--radius-sm)",
+            cursor: "pointer",
+            fontSize: "16px",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "all var(--transition-fast)",
+          }}
+        >
+          ✕
+        </button>
       </div>
 
       {/* Навигация */}

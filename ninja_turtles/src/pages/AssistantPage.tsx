@@ -85,170 +85,183 @@ export default function AssistantPage() {
       }}
     >
       <div
-        ref={chatRef}
+        className="glass-card chat-container"
         style={{
-          flex: 1,
-          overflow: "auto",
+          height: "calc(100vh - var(--header-height) - 48px)",
           display: "flex",
           flexDirection: "column",
-          gap: "16px",
-          padding: "16px 0",
+          overflow: "hidden",
         }}
       >
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            style={{
-              alignSelf: msg.role === "user" ? "flex-end" : "flex-start",
-              maxWidth: "80%",
-              animation: "slideUp 0.3s ease",
-            }}
-          >
+        <div
+          ref={chatRef}
+          style={{
+            flex: 1,
+            overflow: "auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: "16px",
+            padding: "16px 0",
+          }}
+        >
+          {messages.map((msg, i) => (
             <div
+              key={i}
               style={{
-                background:
-                  msg.role === "user" ? "var(--lime)" : "var(--bg-surface)",
-                color: msg.role === "user" ? "#000" : "var(--text-primary)",
-                border:
-                  msg.role === "user"
-                    ? "none"
-                    : "1px solid var(--border-default)",
-                borderRadius:
-                  msg.role === "user"
-                    ? "16px 16px 4px 16px"
-                    : "16px 16px 16px 4px",
-                padding: "14px 18px",
-                fontSize: "13px",
-                lineHeight: 1.6,
-                boxShadow:
-                  msg.role === "user"
-                    ? "0 0 20px rgba(57,255,20,0.15)"
-                    : "none",
+                alignSelf: msg.role === "user" ? "flex-end" : "flex-start",
+                maxWidth: "80%",
+                animation: "slideUp 0.3s ease",
               }}
             >
-              {msg.loading ? (
-                <div style={{ display: "flex", gap: "4px", padding: "4px 0" }}>
-                  {[0, 1, 2].map((j) => (
-                    <span
-                      key={j}
-                      style={{
-                        width: "8px",
-                        height: "8px",
-                        borderRadius: "50%",
-                        background: "var(--lime)",
-                        animation: `pulse 1s ease ${j * 0.2}s infinite`,
-                      }}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <div style={{ whiteSpace: "pre-wrap" }}>{msg.text}</div>
-              )}
-            </div>
-
-            {msg.data && msg.data.length > 0 && (
-              <div style={{ marginTop: "12px" }}>
-                {msg.chartType === "bar" && msg.chartConfig && (
+              <div
+                style={{
+                  background:
+                    msg.role === "user" ? "var(--lime)" : "var(--bg-surface)",
+                  color: msg.role === "user" ? "#000" : "var(--text-primary)",
+                  border:
+                    msg.role === "user"
+                      ? "none"
+                      : "1px solid var(--border-default)",
+                  borderRadius:
+                    msg.role === "user"
+                      ? "16px 16px 4px 16px"
+                      : "16px 16px 16px 4px",
+                  padding: "14px 18px",
+                  fontSize: "13px",
+                  lineHeight: 1.6,
+                  boxShadow:
+                    msg.role === "user"
+                      ? "0 0 20px rgba(57,255,20,0.15)"
+                      : "none",
+                }}
+              >
+                {msg.loading ? (
                   <div
-                    className="glass-card"
-                    style={{ padding: "20px", marginBottom: "12px" }}
+                    style={{ display: "flex", gap: "4px", padding: "4px 0" }}
                   >
-                    <div
-                      style={{
-                        fontSize: "11px",
-                        color: "var(--text-muted)",
-                        marginBottom: "12px",
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        letterSpacing: "1px",
-                      }}
-                    >
-                      📊 BAR CHART
-                    </div>
-                    <BarChart data={msg.data} config={msg.chartConfig} />
+                    {[0, 1, 2].map((j) => (
+                      <span
+                        key={j}
+                        style={{
+                          width: "8px",
+                          height: "8px",
+                          borderRadius: "50%",
+                          background: "var(--lime)",
+                          animation: `pulse 1s ease ${j * 0.2}s infinite`,
+                        }}
+                      />
+                    ))}
                   </div>
+                ) : (
+                  <div style={{ whiteSpace: "pre-wrap" }}>{msg.text}</div>
                 )}
+              </div>
 
-                {msg.chartType === "pie" && msg.chartConfig && (
-                  <div
-                    className="glass-card"
-                    style={{ padding: "20px", marginBottom: "12px" }}
-                  >
+              {msg.data && msg.data.length > 0 && (
+                <div style={{ marginTop: "12px" }}>
+                  {msg.chartType === "bar" && msg.chartConfig && (
                     <div
-                      style={{
-                        fontSize: "11px",
-                        color: "var(--text-muted)",
-                        marginBottom: "12px",
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        letterSpacing: "1px",
-                      }}
+                      className="glass-card"
+                      style={{ padding: "20px", marginBottom: "12px" }}
                     >
-                      🍕 PIE CHART
-                    </div>
-                    <PieChart data={msg.data} config={msg.chartConfig} />
-                  </div>
-                )}
-
-                <div
-                  className="glass-card"
-                  style={{ padding: "16px", overflow: "auto" }}
-                >
-                  <div
-                    style={{
-                      fontSize: "11px",
-                      color: "var(--text-muted)",
-                      marginBottom: "8px",
-                      fontFamily: "'Space Grotesk', sans-serif",
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    📋 ДАННЫЕ ({msg.data.length} записей)
-                  </div>
-                  <table className="data-table">
-                    <thead>
-                      <tr>
-                        {Object.keys(msg.data[0]).map((key) => (
-                          <th key={key}>{key}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {msg.data.slice(0, 20).map((row, ri) => (
-                        <tr key={ri}>
-                          {Object.values(row).map((val, ci) => (
-                            <td key={ci} style={{ fontSize: "12px" }}>
-                              {String(val ?? "—")}
-                            </td>
-                          ))}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  {msg.data.length > 20 && (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        padding: "8px",
-                        color: "var(--text-muted)",
-                        fontSize: "11px",
-                      }}
-                    >
-                      ...и еще {msg.data.length - 20} записей
+                      <div
+                        style={{
+                          fontSize: "11px",
+                          color: "var(--text-muted)",
+                          marginBottom: "12px",
+                          fontFamily: "'Space Grotesk', sans-serif",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        📊 BAR CHART
+                      </div>
+                      <BarChart data={msg.data} config={msg.chartConfig} />
                     </div>
                   )}
+
+                  {msg.chartType === "pie" && msg.chartConfig && (
+                    <div
+                      className="glass-card"
+                      style={{ padding: "20px", marginBottom: "12px" }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "11px",
+                          color: "var(--text-muted)",
+                          marginBottom: "12px",
+                          fontFamily: "'Space Grotesk', sans-serif",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        🍕 PIE CHART
+                      </div>
+                      <PieChart data={msg.data} config={msg.chartConfig} />
+                    </div>
+                  )}
+
+                  <div
+                    className="glass-card"
+                    style={{ padding: "16px", overflow: "auto" }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "11px",
+                        color: "var(--text-muted)",
+                        marginBottom: "8px",
+                        fontFamily: "'Space Grotesk', sans-serif",
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      📋 ДАННЫЕ ({msg.data.length} записей)
+                    </div>
+                    <table className="data-table">
+                      <thead>
+                        <tr>
+                          {Object.keys(msg.data[0]).map((key) => (
+                            <th key={key}>{key}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {msg.data.slice(0, 20).map((row, ri) => (
+                          <tr key={ri}>
+                            {Object.values(row).map((val, ci) => (
+                              <td key={ci} style={{ fontSize: "12px" }}>
+                                {String(val ?? "—")}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    {msg.data.length > 20 && (
+                      <div
+                        style={{
+                          textAlign: "center",
+                          padding: "8px",
+                          color: "var(--text-muted)",
+                          fontSize: "11px",
+                        }}
+                      >
+                        ...и еще {msg.data.length - 20} записей
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-        ))}
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
       <div style={{ marginBottom: "12px" }}>
         <div
+          className="chat-suggestions"
           style={{
             display: "flex",
-            gap: "8px",
+            gap: "10px",
             flexWrap: "wrap",
-            marginBottom: "12px",
+            marginBottom: "16px",
           }}
         >
           {suggestions.map((s, i) => (
@@ -272,7 +285,10 @@ export default function AssistantPage() {
           ))}
         </div>
 
-        <div style={{ display: "flex", gap: "8px" }}>
+        <div
+          className="chat-input-row"
+          style={{ display: "flex", gap: "12px" }}
+        >
           <input
             className="input"
             style={{ flex: 1, borderRadius: "24px", padding: "12px 20px" }}

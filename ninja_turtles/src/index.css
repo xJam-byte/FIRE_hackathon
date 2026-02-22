@@ -4,7 +4,7 @@
    ============================================= */
 
 /* Google Fonts — Modern SaaS typography */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 
 /* CSS Custom Properties — Emerald Aurora Palette */
 :root {
@@ -67,7 +67,8 @@
   --shadow-glow: 0 0 20px var(--lime-glow);
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
   --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.5);
-  --shadow-aurora: 0 0 60px rgba(56, 248, 210, 0.08), 0 0 120px rgba(167, 139, 250, 0.05);
+  --shadow-aurora:
+    0 0 60px rgba(56, 248, 210, 0.08), 0 0 120px rgba(167, 139, 250, 0.05);
 
   /* Spacing */
   --space-xs: 4px;
@@ -98,7 +99,11 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   background-color: var(--bg-deep);
   color: var(--text-primary);
   min-height: 100vh;
@@ -121,7 +126,7 @@ body {
 h1,
 h2,
 .display-font {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   color: var(--lime);
   text-shadow: 0 0 30px var(--lime-glow);
@@ -131,7 +136,7 @@ h2,
 h3,
 h4,
 .heading-font {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.3px;
@@ -140,7 +145,7 @@ h4,
 /* Моноширинный для данных */
 code,
 .mono {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
 }
 
 /* Фокус */
@@ -154,7 +159,9 @@ code,
 a {
   color: var(--lime);
   text-decoration: none;
-  transition: color var(--transition-fast), text-shadow var(--transition-fast);
+  transition:
+    color var(--transition-fast),
+    text-shadow var(--transition-fast);
 }
 
 a:hover {
@@ -168,15 +175,19 @@ a:hover {
 
 /* Aurora pulse */
 @keyframes neonPulse {
-
   0%,
   100% {
-    text-shadow: 0 0 10px var(--lime-glow), 0 0 20px var(--lime-glow);
+    text-shadow:
+      0 0 10px var(--lime-glow),
+      0 0 20px var(--lime-glow);
     filter: brightness(1);
   }
 
   50% {
-    text-shadow: 0 0 20px var(--lime-glow), 0 0 40px var(--lime-glow), 0 0 60px var(--aurora-cyan-glow);
+    text-shadow:
+      0 0 20px var(--lime-glow),
+      0 0 40px var(--lime-glow),
+      0 0 60px var(--aurora-cyan-glow);
     filter: brightness(1.15);
   }
 }
@@ -220,7 +231,6 @@ a:hover {
 
 /* Пульсация */
 @keyframes pulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -248,7 +258,6 @@ a:hover {
 
 /* Border glow */
 @keyframes borderGlow {
-
   0%,
   100% {
     border-color: var(--border-default);
@@ -271,7 +280,6 @@ a:hover {
 }
 
 @keyframes blink {
-
   0%,
   100% {
     opacity: 1;
@@ -355,7 +363,7 @@ a:hover {
 }
 
 .stat-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -401,7 +409,7 @@ a:hover {
   border-radius: var(--radius-full);
   background: var(--bg-elevated);
   color: var(--text-primary);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.3px;
@@ -437,7 +445,7 @@ a:hover {
 }
 
 .data-table thead th {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 1px;
@@ -475,7 +483,7 @@ a:hover {
   border-radius: var(--radius-full);
   font-size: 11px;
   font-weight: 600;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   letter-spacing: 0.3px;
   text-transform: uppercase;
 }
@@ -517,7 +525,7 @@ a:hover {
   border-radius: var(--radius-md);
   padding: 10px 16px;
   color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 13px;
   transition: all var(--transition-fast);
   width: 100%;
@@ -546,16 +554,28 @@ a:hover {
 
 /* Aurora background effect */
 .app-layout::before {
-  content: '';
+  content: "";
   position: fixed;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
   background:
-    radial-gradient(ellipse at 20% 20%, rgba(56, 248, 210, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 10%, rgba(167, 139, 250, 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(163, 247, 92, 0.02) 0%, transparent 50%);
+    radial-gradient(
+      ellipse at 20% 20%,
+      rgba(56, 248, 210, 0.04) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 10%,
+      rgba(167, 139, 250, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 50% 80%,
+      rgba(163, 247, 92, 0.02) 0%,
+      transparent 50%
+    );
   background-size: 200% 200%;
   animation: auroraShift 20s ease-in-out infinite;
   pointer-events: none;
@@ -610,15 +630,34 @@ a:hover {
    Адаптив
    ============================================= */
 
+/* Mobile menu button — hidden by default, shown on tablet/mobile */
+.mobile-menu-btn {
+  display: none !important;
+}
+
+/* Sidebar close button — mobile only */
+.sidebar-close-btn {
+  display: none;
+}
+
+/* ——— Tablet: ≤ 1024px ——— */
 @media (max-width: 1024px) {
   :root {
     --sidebar-width: 0px;
   }
 
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+
+  .sidebar-close-btn {
+    display: flex;
+  }
+
   .app-sidebar {
     transform: translateX(-100%);
     transition: transform var(--transition-slow);
-    width: 260px;
+    width: 280px;
   }
 
   .app-sidebar.open {
@@ -643,15 +682,364 @@ a:hover {
     opacity: 1;
     pointer-events: all;
   }
+
+  /* Header — hide subtitle on tablet */
+  .header-subtitle {
+    display: none;
+  }
 }
 
+/* ——— Mobile: ≤ 768px ——— */
 @media (max-width: 768px) {
   .app-content {
     padding: var(--space-md);
   }
 
+  .app-header {
+    padding: 0 var(--space-md) !important;
+  }
+
   h1 {
-    font-size: 1.3rem;
+    font-size: 1.2rem !important;
+  }
+
+  h2 {
+    font-size: 1rem !important;
+  }
+
+  /* Hero sections */
+  .hero-section {
+    padding: 20px !important;
+    margin-bottom: 20px !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(1rem, 5vw, 1.4rem) !important;
+  }
+
+  /* Stat cards grids */
+  .grid-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  .grid-stats > div {
+    padding: 16px !important;
+  }
+
+  .grid-stats .stat-value {
+    font-size: 24px !important;
+  }
+
+  /* Chart/content grids — single column */
+  .grid-charts {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Three-column grids — stack */
+  .grid-three {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Glass cards — reduced padding */
+  .glass-card {
+    padding: 16px !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  /* Tables — horizontal scroll */
+  .table-scroll-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -16px;
+    padding: 0 16px;
+    position: relative;
+  }
+
+  .data-table {
+    min-width: 600px;
+  }
+
+  .data-table thead th {
+    padding: 10px 12px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .data-table tbody td {
+    padding: 10px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  /* Tickets page — detail panel as bottom sheet */
+  .tickets-layout {
+    flex-direction: column !important;
+  }
+
+  .ticket-detail-panel {
+    width: 100% !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0 !important;
+    z-index: 200 !important;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5) !important;
+    animation: slideUpSheet 0.3s ease !important;
+  }
+
+  .ticket-detail-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 199;
+  }
+
+  /* Filters row */
+  .filters-row {
+    gap: 8px !important;
+  }
+
+  .filters-row select {
+    min-width: 140px !important;
+    font-size: 12px !important;
+  }
+
+  .filters-row .filter-meta {
+    width: 100%;
+    margin-left: 0 !important;
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  /* Manager cards */
+  .grid-managers {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Office cards */
+  .grid-offices {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Dashboard modal */
+  .modal-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
+    max-height: 90vh !important;
+    padding: 24px !important;
+    align-self: flex-end !important;
+  }
+
+  .modal-content .modal-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* AI Status badge in header */
+  .ai-status-badge {
+    display: none !important;
+  }
+
+  /* Chat page */
+  .chat-container {
+    height: calc(100vh - var(--header-height) - 32px) !important;
+    height: calc(100dvh - var(--header-height) - 32px) !important;
+  }
+
+  .chat-message {
+    max-width: 90% !important;
+  }
+
+  .chat-suggestions {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap !important;
+    padding-bottom: 4px;
+  }
+
+  .chat-suggestions button {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .chat-input-row {
+    gap: 6px !important;
+  }
+
+  .chat-input-row input {
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+  }
+
+  .chat-input-row button {
+    padding: 10px 16px !important;
+  }
+
+  /* Pagination — compact */
+  .pagination-row {
+    gap: 4px !important;
+    flex-wrap: wrap;
+  }
+
+  .pagination-row button {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+  }
+
+  /* Analytics tabs */
+  .analytics-tabs {
+    flex-wrap: wrap;
+    gap: 6px !important;
+  }
+
+  .analytics-tabs button {
+    flex: 1;
+    min-width: auto !important;
+    padding: 8px 14px !important;
+    font-size: 11px !important;
+  }
+
+  /* KPI cards */
+  .grid-kpis {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* Badges — slightly smaller on mobile */
+  .badge {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
+
+  /* Button — touch-friendly */
+  .btn {
+    min-height: 40px;
+    padding: 10px 18px;
+  }
+}
+
+/* ——— Small phones: ≤ 480px ——— */
+@media (max-width: 480px) {
+  .app-content {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.05rem !important;
+  }
+
+  /* Stat cards — single column on very small screens */
+  .grid-stats {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .grid-stats > div {
+    padding: 14px !important;
+  }
+
+  /* Hero padding */
+  .hero-section {
+    padding: 16px !important;
+  }
+
+  .hero-section .hero-actions {
+    width: 100%;
+  }
+
+  .hero-section .hero-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Process result bar — stack items */
+  .process-result {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  /* Chat suggestions */
+  .chat-suggestions {
+    margin-bottom: 8px !important;
+  }
+
+  /* Donut charts — stack vertically */
+  .donut-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+
+  /* Manager card inner elements */
+  .grid-managers .glass-card {
+    padding: 16px !important;
+  }
+
+  /* Sidebar narrower */
+  .app-sidebar {
+    width: 260px;
+  }
+
+  /* KPIs single column */
+  .grid-kpis {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ——— Tiny phones: ≤ 360px ——— */
+@media (max-width: 360px) {
+  .app-content {
+    padding: 10px;
+  }
+
+  .grid-stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  .app-header {
+    height: 56px;
+  }
+
+  :root {
+    --header-height: 56px;
+  }
+
+  .hero-section h1 {
+    font-size: 0.95rem !important;
+  }
+}
+
+/* Bottom sheet animation */
+@keyframes slideUpSheet {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Safe area insets for notched phones */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .chat-container {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .ticket-detail-panel {
+    padding-bottom: env(safe-area-inset-bottom) !important;
   }
 }
 
@@ -662,7 +1050,9 @@ a:hover {
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 
 .reveal.visible {

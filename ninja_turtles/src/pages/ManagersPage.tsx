@@ -99,10 +99,11 @@ export default function ManagersPage() {
   return (
     <div>
       <div
+        className="grid-stats"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "16px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "24px",
           marginBottom: "32px",
         }}
       >
@@ -143,10 +144,11 @@ export default function ManagersPage() {
       </div>
 
       <div
+        className="grid-managers"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+          gap: "24px",
         }}
       >
         {managers.map((mgr, i) => {
@@ -335,12 +337,13 @@ export default function ManagersPage() {
 
       {meta && meta.totalPages > 1 && (
         <div
+          className="pagination-row"
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             gap: "8px",
-            padding: "24px 0",
+            marginTop: "32px",
           }}
         >
           <button

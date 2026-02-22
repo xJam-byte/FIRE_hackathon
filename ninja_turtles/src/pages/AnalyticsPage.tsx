@@ -587,11 +587,12 @@ function OverviewTab({ stats }: { stats: AnalyticsStats }) {
 
       {/* Segments + Languages + Priority */}
       <div
+        className="grid-stats"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          gap: "24px",
-          marginBottom: "28px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: "20px",
+          marginBottom: "32px",
         }}
       >
         <RevealSection delay={350}>
@@ -959,7 +960,7 @@ function OverviewTab({ stats }: { stats: AnalyticsStats }) {
           >
             <PeopleIcon size={18} /> Топ менеджеров по нагрузке
           </h3>
-          <div style={{ overflowX: "auto" }}>
+          <div className="table-scroll-wrapper">
             <table className="data-table">
               <thead>
                 <tr>
@@ -1063,7 +1064,7 @@ function OverviewTab({ stats }: { stats: AnalyticsStats }) {
             >
               🚨 Критические обращения (приоритет 8-10)
             </h3>
-            <div style={{ overflowX: "auto" }}>
+            <div className="table-scroll-wrapper">
               <table className="data-table">
                 <thead>
                   <tr>
@@ -1230,6 +1231,7 @@ function AiTab({
       {aiReport.kpis && aiReport.kpis.length > 0 && (
         <RevealSection delay={100}>
           <div
+            className="grid-kpis"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",

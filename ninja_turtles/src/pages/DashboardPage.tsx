@@ -99,6 +99,7 @@ function DonutChart({
 
   return (
     <div
+      className="donut-container"
       style={{
         display: "flex",
         alignItems: "center",
@@ -430,6 +431,7 @@ export default function DashboardPage() {
     <div>
       <RevealSection>
         <div
+          className="hero-section"
           style={{
             background:
               "linear-gradient(135deg, var(--bg-surface) 0%, rgba(57, 255, 20, 0.05) 100%)",
@@ -498,6 +500,7 @@ export default function DashboardPage() {
           </div>
           {processResult && (
             <div
+              className="process-result"
               style={{
                 marginTop: "16px",
                 padding: "12px 16px",
@@ -542,6 +545,7 @@ export default function DashboardPage() {
       </RevealSection>
 
       <div
+        className="grid-stats"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -573,6 +577,7 @@ export default function DashboardPage() {
                     {card.label}
                   </div>
                   <div
+                    className="stat-value"
                     style={{
                       fontSize: "32px",
                       fontWeight: 700,
@@ -591,6 +596,7 @@ export default function DashboardPage() {
       </div>
 
       <div
+        className="grid-charts"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
@@ -675,7 +681,7 @@ export default function DashboardPage() {
             </a>
           </div>
 
-          <div style={{ overflowX: "auto" }}>
+          <div className="table-scroll-wrapper">
             <table className="data-table">
               <thead>
                 <tr>
@@ -810,6 +816,7 @@ function TicketModal({
       }}
     >
       <div
+        className="modal-content"
         onClick={(e) => e.stopPropagation()}
         style={{
           background: "var(--bg-surface)",
@@ -903,6 +910,7 @@ function TicketModal({
               AI-аналитика
             </h3>
             <div
+              className="modal-grid"
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",

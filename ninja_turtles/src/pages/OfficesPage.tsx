@@ -107,6 +107,7 @@ export default function OfficesPage() {
   return (
     <div>
       <div
+        className="grid-offices"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))",
